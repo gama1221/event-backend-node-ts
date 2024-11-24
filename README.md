@@ -22,6 +22,48 @@ Open [http://localhost:4000/api-docs/#/](http://localhost:4000/api-docs/#/) with
 ![My Image](./images/content.png)
 
 ## Database Tables
+- First create database called event-management-db on mysql
+    ```sql
+    create database `event-management-db`
+    use `event-management-db`
+    ```
+- Create User table 
+  ```sql
+  CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  ```
+- Create Event table having this columns
+
+  ```sql
+  CREATE TABLE events (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      description TEXT,
+      date DATE NOT NULL,
+      location VARCHAR(255),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      created_by INT NOT NULL,
+      start_date DATETIME NOT NULL,
+      end_date DATETIME NOT NULL
+  );
+
+  ```
+- Create rsvps table having this columns
+  ```sql
+  CREATE TABLE rsvps (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    status ENUM('Pending', 'Accepted', 'Declined') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (event_id) REFERENCES events(id)
+  );
+  ```
 ### Event Table
   - Has the following columns and records as of this doc prepared
 ![My Image](./images/event-db.png)
