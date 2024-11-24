@@ -137,6 +137,10 @@ RUN ls -la .output/server
 # Start the Nuxt server using the output directory
 CMD ["node", ".output/server/index.mjs"]
 ```
+
+## Go to Frontend
+- **Go to frontend respository**: [https://github.com/gama1221/event-frontend](https://github.com/gama1221/event-frontend)  
+
 ## Backend Technologies
 - Typescript
 - Nodejs
